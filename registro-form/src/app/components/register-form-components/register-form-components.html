@@ -1,18 +1,18 @@
 <div class="container formulario my-5">
   <h2 class="mb-4">Registro</h2>
 
-  <form #registroForm="ngForm" (ngSubmit)="registrar()">
+  <form (ngSubmit)="registrar()">
 
     <div class="row">
       <div class="col-md-6 mb-3">
         <label for="nombre" class="form-label">Nombre</label>
         <input type="text" id="nombre" name="nombre" class="form-control"
-               [(ngModel)]="usuario.nombre" required>
+               [(ngModel)]="usuario.nombre">
       </div>
       <div class="col-md-6 mb-3">
         <label for="apellidos" class="form-label">Apellidos</label>
         <input type="text" id="apellidos" name="apellidos" class="form-control"
-               [(ngModel)]="usuario.apellidos" required>
+               [(ngModel)]="usuario.apellidos">
       </div>
     </div>
 
@@ -20,18 +20,18 @@
       <div class="col-md-4 mb-3">
         <label for="nif" class="form-label">NIF</label>
         <input type="text" id="nif" name="nif" class="form-control"
-               [(ngModel)]="usuario.nif" required pattern="[0-9]{8}[A-Za-z]"
+               [(ngModel)]="usuario.nif"
                placeholder="12345678A">
       </div>
       <div class="col-md-4 mb-3">
         <label for="email" class="form-label">Email</label>
         <input type="email" id="email" name="email" class="form-control"
-               [(ngModel)]="usuario.email" required email>
+               [(ngModel)]="usuario.email">
       </div>
       <div class="col-md-4 mb-3">
         <label for="telefono" class="form-label">Teléfono</label>
         <input type="tel" id="telefono" name="telefono" class="form-control"
-               [(ngModel)]="usuario.telefono" required pattern="[0-9]{9}">
+               [(ngModel)]="usuario.telefono">
       </div>
     </div>
 
@@ -39,17 +39,17 @@
       <label class="form-label d-block">Sexo</label>
       <div class="form-check form-check-inline">
         <input class="form-check-input" type="radio" id="hombre" name="sexo"
-               value="hombre" [(ngModel)]="usuario.sexo" required>
+               value="hombre" [(ngModel)]="usuario.sexo">
         <label class="form-check-label" for="hombre">Hombre</label>
       </div>
       <div class="form-check form-check-inline">
         <input class="form-check-input" type="radio" id="mujer" name="sexo"
-               value="mujer" [(ngModel)]="usuario.sexo" required>
+               value="mujer" [(ngModel)]="usuario.sexo">
         <label class="form-check-label" for="mujer">Mujer</label>
       </div>
       <div class="form-check form-check-inline">
         <input class="form-check-input" type="radio" id="otro" name="sexo"
-               value="otro" [(ngModel)]="usuario.sexo" required>
+               value="otro" [(ngModel)]="usuario.sexo">
         <label class="form-check-label" for="otro">Otro</label>
       </div>
     </div>
@@ -57,7 +57,7 @@
     <div class="mb-3">
       <label for="comoConocio" class="form-label">¿Cómo conociste la página?</label>
       <select id="comoConocio" name="comoConocio" class="form-select"
-              [(ngModel)]="usuario.comoConocio" required>
+              [(ngModel)]="usuario.comoConocio">
         <option value="" disabled>Selecciona una opción</option>
         @for (opcion of opcionesConocio; track opcion.valor) {
           <option [value]="opcion.valor">{{ opcion.texto }}</option>
@@ -69,30 +69,25 @@
       <div class="col-md-6 mb-3">
         <label for="password" class="form-label">Contraseña</label>
         <input type="password" id="password" name="password" class="form-control"
-               [(ngModel)]="usuario.password" required minlength="6">
+               [(ngModel)]="usuario.password">
       </div>
       <div class="col-md-6 mb-3">
         <label for="confirmarPassword" class="form-label">Confirmar contraseña</label>
         <input type="password" id="confirmarPassword" name="confirmarPassword" class="form-control"
-               [(ngModel)]="usuario.confirmarPassword" required>
-        @if (usuario.confirmarPassword && !passwordsCoinciden) {
-          <div class="form-text text-danger">Las contraseñas no coinciden</div>
-        }
+               [(ngModel)]="usuario.confirmarPassword">
       </div>
     </div>
 
     <div class="form-check mb-4">
       <input class="form-check-input" type="checkbox" id="aceptaTerminos" name="aceptaTerminos"
-             [(ngModel)]="usuario.aceptaTerminos" required>
+             [(ngModel)]="usuario.aceptaTerminos">
       <label class="form-check-label" for="aceptaTerminos">
         Acepto los términos y condiciones
       </label>
     </div>
 
-    <button type="submit" class="btn btn-primary"
-            [disabled]="registroForm.invalid || !passwordsCoinciden">
+    <button type="submit" class="btn btn-primary">
       Registro
     </button>
   </form>
 </div>
-

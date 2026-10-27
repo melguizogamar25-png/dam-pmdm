@@ -31,4 +31,8 @@ export class RegisterFormComponents {
   get passwordsCoinciden(): boolean {
     return this.usuario.password === this.usuario.confirmarPassword;
   }
+
+  registrar(): void {
+    console.log('Datos del registro:', this.usuario);
+  }
 }

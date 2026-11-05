@@ -1,0 +1,13 @@
+<h1>Personajes de Star Wars</h1>
+
+@if (loading()) {
+  <p>Cargando...</p>
+} @else if (error()) {
+  <p>Error al cargar los personajes</p>
+} @else {
+  <ul>
+    @for (p of people(); track p.url) {
+      <app-people-item [person]="p" (selected)="openModal($event)" />
+    }
+  </ul>
+}

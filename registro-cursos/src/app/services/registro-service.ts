@@ -12,6 +12,11 @@ export class RegistroService {
             ...registro,
             id: this.siguienteId++,
             fechaAlta: new Date().toISOString(),
-        }
+        };
+        this.registros.push(guardado);
+        return of(guardado).pipe(delay(500));
+    }
+    getRegistros(): RegistroGuardado[] {
+        return [...this.registros];
     }
 }

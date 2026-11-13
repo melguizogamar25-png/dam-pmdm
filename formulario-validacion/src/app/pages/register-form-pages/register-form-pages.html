@@ -1,0 +1,292 @@
+<h1 class="h3 my-4">Registro de mascota</h1>
+<form [formGroup]="registerForm" (ngSubmit)="formSubmit()" novalidate>
+  <fieldset formGroupName="owner" class="row g-3 mb-4">
+    <legend class="h5">Datos del propietario</legend>
+    <div class="col-md-6">
+      <label for="owner-first-name" class="form-label"
+        >Nombre <span class="text-danger">*</span></label
+      >
+      <input
+        id="owner-first-name"
+        type="text"
+        formControlName="firstName"
+        class="form-control"
+        [class.is-invalid]="isInvalidField('owner.firstName')"
+      />
+      @if (isInvalidField('owner.firstName')) {
+        @for (message of getErrorMessages('owner.firstName'); track message) {
+          <div class="invalid-feedback">{{ message }}</div>
+        }
+      }
+    </div>
+    <div class="col-md-6">
+      <label for="owner-last-name" class="form-label"
+        >Apellidos <span class="text-danger">*</span></label
+      >
+      <input
+        id="owner-last-name"
+        type="text"
+        formControlName="lastName"
+        class="form-control"
+        [class.is-invalid]="isInvalidField('owner.lastName')"
+      />
+      @if (isInvalidField('owner.lastName')) {
+        @for (message of getErrorMessages('owner.lastName'); track message) {
+          <div class="invalid-feedback">{{ message }}</div>
+        }
+      }
+    </div>
+    <div class="col-md-6">
+      <label for="owner-phone" class="form-label"
+        >Teléfono de contacto <span class="text-danger">*</span></label
+      >
+      <input
+        id="owner-phone"
+        type="tel"
+        formControlName="phone"
+        class="form-control"
+        [class.is-invalid]="isInvalidField('owner.phone')"
+      />
+      @if (isInvalidField('owner.phone')) {
+        @for (message of getErrorMessages('owner.phone'); track message) {
+          <div class="invalid-feedback">{{ message }}</div>
+        }
+      }
+    </div>
+    <div class="col-md-6">
+      <label for="owner-email" class="form-label">Email <span class="text-danger">*</span></label>
+      <input
+        id="owner-email"
+        type="email"
+        formControlName="email"
+        class="form-control"
+        [class.is-invalid]="isInvalidField('owner.email')"
+      />
+      @if (isInvalidField('owner.email')) {
+        @for (message of getErrorMessages('owner.email'); track message) {
+          <div class="invalid-feedback">{{ message }}</div>
+        }
+      }
+    </div>
+  </fieldset>
+
+  <fieldset formGroupName="pet" class="row g-3 mb-4">
+    <legend class="h5">Datos de la mascota</legend>
+    <div class="col-md-6">
+      <label for="pet-name" class="form-label"
+        >Nombre de la mascota <span class="text-danger">*</span></label
+      >
+      <input
+        id="pet-name"
+        type="text"
+        formControlName="name"
+        class="form-control"
+        [class.is-invalid]="isInvalidField('pet.name')"
+      />
+      @if (isInvalidField('pet.name')) {
+        @for (message of getErrorMessages('pet.name'); track message) {
+          <div class="invalid-feedback">{{ message }}</div>
+        }
+      }
+    </div>
+    <div class="col-md-6">
+      <label for="pet-species" class="form-label">Especie <span class="text-danger">*</span></label>
+      <select
+        id="pet-species"
+        formControlName="species"
+        class="form-select"
+        [class.is-invalid]="isInvalidField('pet.species')"
+      >
+        <option value="">-- Selecciona una especie --</option>
+        <option value="Perro">Perro</option>
+        <option value="Gato">Gato</option>
+        <option value="Ave">Ave</option>
+        <option value="Otro">Otro</option>
+      </select>
+      @if (isInvalidField('pet.species')) {
+        @for (message of getErrorMessages('pet.species'); track message) {
+          <div class="invalid-feedback">{{ message }}</div>
+        }
+      }
+    </div>
+    <div class="col-md-6">
+      <span class="form-label d-block">Sexo <span class="text-danger">*</span></span>
+      <div class="form-check form-check-inline">
+        <input
+          id="pet-sex-male"
+          type="radio"
+          formControlName="sex"
+          value="Macho"
+          class="form-check-input"
+          [class.is-invalid]="isInvalidField('pet.sex')"
+        />
+        <label for="pet-sex-male" class="form-check-label">Macho</label>
+      </div>
+      <div class="form-check form-check-inline">
+        <input
+          id="pet-sex-female"
+          type="radio"
+          formControlName="sex"
+          value="Hembra"
+          class="form-check-input"
+          [class.is-invalid]="isInvalidField('pet.sex')"
+        />
+        <label for="pet-sex-female" class="form-check-label">Hembra</label>
+      </div>
+      @if (isInvalidField('pet.sex')) {
+        @for (message of getErrorMessages('pet.sex'); track message) {
+          <div class="invalid-feedback d-block">{{ message }}</div>
+        }
+      }
+    </div>
+    <div class="col-md-6">
+      <label for="pet-breed" class="form-label">Raza</label>
+      <input
+        id="pet-breed"
+        type="text"
+        formControlName="breed"
+        class="form-control"
+        [class.is-invalid]="isInvalidField('pet.breed')"
+      />
+      @if (isInvalidField('pet.breed')) {
+        @for (message of getErrorMessages('pet.breed'); track message) {
+          <div class="invalid-feedback">{{ message }}</div>
+        }
+      }
+    </div>
+    <div class="col-md-3">
+      <label for="pet-age" class="form-label">Edad (años) <span class="text-danger">*</span></label>
+      <input
+        id="pet-age"
+        type="number"
+        formControlName="age"
+        class="form-control"
+        step="1"
+        [class.is-invalid]="isInvalidField('pet.age')"
+      />
+      @if (isInvalidField('pet.age')) {
+        @for (message of getErrorMessages('pet.age'); track message) {
+          <div class="invalid-feedback">{{ message }}</div>
+        }
+      }
+    </div>
+    <div class="col-md-3">
+      <label for="pet-weight" class="form-label"
+        >Peso (kg) <span class="text-danger">*</span></label
+      >
+      <input
+        id="pet-weight"
+        type="number"
+        formControlName="weight"
+        class="form-control"
+        step="0.1"
+        [class.is-invalid]="isInvalidField('pet.weight')"
+      />
+      @if (isInvalidField('pet.weight')) {
+        @for (message of getErrorMessages('pet.weight'); track message) {
+          <div class="invalid-feedback">{{ message }}</div>
+        }
+      }
+    </div>
+    <div class="col-md-6">
+      <label for="pet-microchip" class="form-label"
+        >Número de microchip <span class="text-danger">*</span></label
+      >
+      <input
+        id="pet-microchip"
+        type="text"
+        formControlName="microchip"
+        class="form-control"
+        [class.is-invalid]="isInvalidField('pet.microchip')"
+      />
+      @if (isInvalidField('pet.microchip')) {
+        @for (message of getErrorMessages('pet.microchip'); track message) {
+          <div class="invalid-feedback">{{ message }}</div>
+        }
+      }
+    </div>
+  </fieldset>
+
+  <fieldset formGroupName="account" class="row g-3 mb-4">
+    <legend class="h5">Cuenta</legend>
+    <div class="col-md-6">
+      <label for="account-password" class="form-label"
+        >Contraseña <span class="text-danger">*</span></label
+      >
+      <input
+        id="account-password"
+        type="password"
+        formControlName="password"
+        class="form-control"
+        [class.is-invalid]="isInvalidField('account.password')"
+      />
+      @if (isInvalidField('account.password')) {
+        @for (message of getErrorMessages('account.password'); track message) {
+          <div class="invalid-feedback">{{ message }}</div>
+        }
+      }
+    </div>
+  </fieldset>
+
+  <fieldset formGroupName="visit" class="row g-3 mb-4">
+    <legend class="h5">Primera visita</legend>
+    <div class="col-12">
+      <label for="visit-reason" class="form-label"
+        >Motivo de la primera visita <span class="text-danger">*</span></label
+      >
+      <textarea
+        id="visit-reason"
+        rows="4"
+        formControlName="reason"
+        class="form-control"
+        [class.is-invalid]="isInvalidField('visit.reason')"
+      ></textarea>
+      @if (isInvalidField('visit.reason')) {
+        @for (message of getErrorMessages('visit.reason'); track message) {
+          <div class="invalid-feedback">{{ message }}</div>
+        }
+      }
+    </div>
+  </fieldset>
+
+  <fieldset formGroupName="consents" class="row g-3 mb-4">
+    <legend class="h5">Consentimientos</legend>
+    <div class="col-12">
+      <div class="form-check">
+        <input
+          id="consents-privacy"
+          type="checkbox"
+          formControlName="privacyPolicy"
+          class="form-check-input"
+          [class.is-invalid]="isInvalidField('consents.privacyPolicy')"
+        />
+        <label for="consents-privacy" class="form-check-label"
+          >Acepto la política de privacidad <span class="text-danger">*</span></label
+        >
+      </div>
+      @if (isInvalidField('consents.privacyPolicy')) {
+        @for (message of getErrorMessages('consents.privacyPolicy'); track message) {
+          <div class="invalid-feedback d-block">{{ message }}</div>
+        }
+      }
+    </div>
+    <div class="col-12">
+      <div class="form-check">
+        <input
+          id="consents-reminders"
+          type="checkbox"
+          formControlName="vaccineReminders"
+          class="form-check-input"
+        />
+        <label for="consents-reminders" class="form-check-label"
+          >Quiero recibir recordatorios de vacunas por email</label
+        >
+      </div>
+    </div>
+  </fieldset>
+
+  <button type="submit" class="btn btn-primary mb-4" [disabled]="registerForm.invalid">
+    Registrar
+  </button>
+</form>
+
